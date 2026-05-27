@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Harold F. Trent III — Portfolio</title>
+<style>
+  :root {
+    --ink: #0e1a2b;
+    --ink-soft: #1f2d44;
+    --paper: #f5f1e8;
+    --paper-warm: #ebe4d2;
+    --rule: #c8bfa8;
+    --accent: #b8430e;
+    --accent-soft: #d4651a;
+    --gold: #c9a84c;
+    --muted: #6b7280;
+    --serif: Arial, Helvetica, sans-serif;
+    --sans: Arial, Helvetica, sans-serif;
+    --mono: Arial, Helvetica, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.55;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(at 20% 10%, rgba(184, 67, 14, 0.04) 0px, transparent 50%),
+      radial-gradient(at 90% 80%, rgba(14, 26, 43, 0.05) 0px, transparent 50%);
+  }
+
+  /* Subtle paper grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: 1;
+    mix-blend-mode: multiply;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ─────────── NAV ─────────── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(245, 241, 232, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 18px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-mark {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-mark span { color: var(--accent); font-style: italic; }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ─────────── HERO ─────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 140px 0 80px;
+    position: relative;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+  }
+
+  .hero-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-meta::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(64px, 9vw, 128px);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin-bottom: 28px;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .hero-tagline {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    max-width: 540px;
+    font-style: italic;
+  }
+
+  .hero-aside {
+    border-left: 1px solid var(--rule);
+    padding-left: 40px;
+  }
+
+  .hero-aside-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .hero-aside-body {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+  }
+
+  .hero-aside-body strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .hero-contact {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px 24px;
+    font-family: var(--mono);
+    font-size: 13px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .hero-contact dt {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+    align-self: center;
+  }
+
+  .hero-contact dd { color: var(--ink); }
+
+  /* Animation on load */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .reveal-1 { animation-delay: 0.1s; }
+  .reveal-2 { animation-delay: 0.25s; }
+  .reveal-3 { animation-delay: 0.4s; }
+  .reveal-4 { animation-delay: 0.55s; }
+  .reveal-5 { animation-delay: 0.7s; }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─────────── SECTION HEADERS ─────────── */
+  section {
+    padding: 120px 0;
+    position: relative;
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+    margin-bottom: 80px;
+    align-items: baseline;
+    border-top: 1px solid var(--ink);
+    padding-top: 32px;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .section-lede {
+    grid-column: 2;
+    max-width: 640px;
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-top: 24px;
+  }
+
+  /* ─────────── ABOUT ─────────── */
+  .about-body {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    gap: 60px;
+  }
+
+  .about-body > div:first-child {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .about-text p {
+    margin-bottom: 22px;
+    font-size: 19px;
+    line-height: 1.65;
+  }
+
+  .about-text p:first-child::first-line {
+    font-variant: small-caps;
+    letter-spacing: 0.05em;
+  }
+
+  .about-text strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ─────────── PROJECTS ─────────── */
+  .project {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+    padding: 60px 0;
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .project:last-child { border-bottom: 1px solid var(--rule); }
+
+  .project-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .project-meta .label {
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .project-meta .value {
+    color: var(--ink);
+    margin-bottom: 20px;
+    display: block;
+    font-size: 13px;
+  }
+
+  .project-title {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .project-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .project-pull {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.5;
+    font-style: italic;
+    color: var(--ink-soft);
+    border-left: 2px solid var(--accent);
+    padding-left: 24px;
+    margin: 28px 0;
+    max-width: 680px;
+  }
+
+  .project-body p {
+    font-size: 18px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+    max-width: 720px;
+  }
+
+  .project-body strong { font-weight: 600; }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    padding: 6px 12px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    background: transparent;
+    transition: all 0.2s;
+  }
+
+  .tag:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .tag.accent {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .tag.accent:hover {
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  .project-outcomes {
+    margin-top: 32px;
+    padding: 24px 28px;
+    background: var(--paper-warm);
+    border-left: 3px solid var(--accent);
+  }
+
+  .project-outcomes h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .project-outcomes ul {
+    list-style: none;
+  }
+
+  .project-outcomes li {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.55;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  .project-outcomes li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: var(--mono);
+  }
+
+  /* ─────────── PUBLICATIONS ─────────── */
+  .pubs {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+  }
+
+  .pubs-list {
+    counter-reset: pub;
+  }
+
+  .pub {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 32px;
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+
+  .pub:last-child { border-bottom: 1px solid var(--rule); }
+
+  .pub-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+
+  .pub-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .pub-venue {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+
+  .pub-year {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ─────────── SKILLS ─────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr 1fr;
+    gap: 60px;
+  }
+
+  .skill-col h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .skill-col ul {
+    list-style: none;
+  }
+
+  .skill-col li {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    padding: 4px 0;
+  }
+
+  .skill-col li::before {
+    content: '·  ';
+    color: var(--accent);
+    font-weight: bold;
+  }
+
+  /* ─────────── FOOTER ─────────── */
+  footer {
+    padding: 80px 0 60px;
+    border-top: 1px solid var(--ink);
+    margin-top: 60px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+
+  .footer-statement {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .footer-statement em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .footer-contact {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 2;
+  }
+
+  .footer-contact a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.2s;
+  }
+
+  .footer-contact a:hover { border-color: var(--accent); }
+
+  .footer-fine {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ─────────── RESPONSIVE ─────────── */
+  @media (max-width: 900px) {
+    .container { padding: 0 24px; }
+    .nav-inner { padding: 16px 24px; }
+    .nav-links { gap: 18px; font-size: 11px; }
+    .hero { padding: 110px 0 60px; }
+    .hero-grid,
+    .section-header,
+    .about-body,
+    .project,
+    .pubs,
+    .skills-grid,
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .section-lede { grid-column: 1; }
+    .pub { grid-template-columns: 32px 1fr; }
+    .pub-year { grid-column: 2; }
+    section { padding: 80px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-mark">H<span>·</span>F<span>·</span>T</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#publications">Research</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero container">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-meta reveal reveal-1">Portfolio &nbsp;·&nbsp; MMXXVI &nbsp;·&nbsp; Roanoke, VA</div>
+      <h1 class="hero-name reveal reveal-2">
+        Harold F.<br>
+        <em>Trent</em> III.
+      </h1>
+      <p class="hero-tagline reveal reveal-3">
+        AI Solutions Engineer building the knowledge
+        infrastructure that LLM systems depend on.
+      </p>
+    </div>
+    <aside class="hero-aside reveal reveal-4">
+      <div class="hero-aside-label">— Practitioner's Note</div>
+      <p class="hero-aside-body">
+        Fifteen-plus years modeling, structuring, and delivering enterprise
+        information at scale — <strong>the exact problem RAG pipelines
+        and grounded LLM applications exist to solve</strong>. Now building
+        that capability directly in Python and the Anthropic API.
+      </p>
+      <dl class="hero-contact">
+        <dt>Phone</dt><dd>540.397.9771</dd>
+        <dt>Email</dt><dd>hal.trent@me.com</dd>
+        <dt>LinkedIn</dt><dd>/in/hal-trent</dd>
+        <dt>Based</dt><dd>Roanoke, Virginia</dd>
+      </dl>
+    </aside>
+  </div>
+</header>
+
+<!-- ─────────── ABOUT ─────────── -->
+<section id="about" class="container">
+  <div class="section-header">
+    <div class="section-num">§ 01 — Profile</div>
+    <h2 class="section-title">Not a <em>pivot</em> — an extension.</h2>
+  </div>
+  <div class="about-body">
+    <div>Background</div>
+    <div class="about-text">
+      <p>
+        My AI work is a natural extension of fifteen-plus years spent solving
+        the problems AI systems depend on most: <strong>how to model, structure,
+        govern, and deliver information so that it is accurate, reusable, and
+        machine-ready at scale</strong>.
+      </p>
+      <p>
+        A Master's in Information Systems from DePaul established the intellectual
+        foundation. The discipline of structured content — schema design, data
+        governance, localization-readiness, multi-channel publishing — is precisely
+        the discipline that separates reliable AI deployments from brittle ones.
+      </p>
+    </div>
+    <div class="about-text">
+      <p>
+        I design <strong>LLM integrations, RAG-style retrieval and grounding
+        layers, prompt and evaluation frameworks, and automated content-migration
+        tooling</strong>. My background spans CTO-level platform strategy, Fortune
+        500 solutions engineering, and hands-on DITA/XML and CI/CD pipeline
+        development.
+      </p>
+      <p>
+        Clean, well-modeled, locale-aware content is not a prerequisite most AI
+        engineers think to bring to the table. <strong>I do — because I have spent
+        a career building it.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── WORK ─────────── -->
+<section id="work" class="container">
+  <div class="section-header">
+    <div class="section-num">§ 02 — Selected Work</div>
+    <h2 class="section-title">Four projects, <em>one discipline</em>.</h2>
+    <p class="section-lede">
+      Production AI work grounded in enterprise quality standards, not theoretical
+      experimentation. Each project applies knowledge-architecture rigor to a
+      different scale — from solo-built LLM tooling to Fortune 500 platform strategy.
+    </p>
+  </div>
+
+  <!-- Project 1: AI Solutions Consultant -->
+  <article class="project">
+    <div class="project-meta">
+      <span class="label">Project № 01</span>
+      <span class="value">Applied AI Engineering</span>
+      <span class="label">Role</span>
+      <span class="value">AI Solutions Consultant (Independent)</span>
+      <span class="label">Stack</span>
+      <span class="value">Python · Anthropic API · RAG</span>
+      <span class="label">Years</span>
+      <span class="value">2025 – Present</span>
+    </div>
+    <div class="project-body">
+      <h3 class="project-title">End-to-end <em>LLM integrations</em> for small business</h3>
+      <p>
+        I build end-to-end LLM integrations for small businesses using the
+        Anthropic API — <strong>RAG-style knowledge grounding, reusable prompt
+        libraries, project-based system prompts encoding domain logic and brand
+        voice, Python tooling, and output-quality evaluation</strong>.
+      </p>
+      <blockquote class="project-pull">
+        Apply enterprise knowledge-architecture rigor — schema design, retrieval
+        modeling, evaluation discipline — to lightweight, deployable AI products.
+      </blockquote>
+      <p>
+        The centerpiece is a <strong>multimodal photo-ingestion tool</strong> that
+        reads business listings, handwritten notes, spec sheets, and job images,
+        extracts structured data, and chains it into LLM prompts to auto-generate
+        quotes, scopes of work, and marketing copy — with no manual data entry.
+      </p>
+      <div class="project-outcomes">
+        <h4>Outcomes</h4>
+        <ul>
+          <li>Multimodal ingestion → structured data → LLM-generated business documents</li>
+          <li>Reusable prompt libraries with domain logic and brand voice encoded</li>
+          <li>Output-quality evaluation frameworks for production reliability</li>
+        </ul>
+      </div>
+      <div class="project-stack">
+        <span class="tag accent">Anthropic API</span>
+        <span class="tag accent">Python</span>
+        <span class="tag accent">RAG</span>
+        <span class="tag">Multimodal</span>
+        <span class="tag">Prompt Engineering</span>
+        <span class="tag">Evaluation</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- Project 2: Heretto -->
+  <article class="project">
+    <div class="project-meta">
+      <span class="label">Project № 02</span>
+      <span class="value">LLM-Powered Migration Tool</span>
+      <span class="label">Role</span>
+      <span class="value">Implementation Engineer</span>
+      <span class="label">Company</span>
+      <span class="value">Heretto</span>
+      <span class="label">Years</span>
+      <span class="value">2024 – 2025</span>
+    </div>
+    <div class="project-body">
+      <h3 class="project-title">LLM-powered <em>DITA migration</em> tooling</h3>
+      <p>
+        I designed and deployed <strong>Python tooling powered by large language
+        models</strong> that analyzed unstructured legacy document corpora, inferred
+        semantic structure, and migrated content into DITA-XML schemas.
+      </p>
+      <blockquote class="project-pull">
+        Production AI work grounded in enterprise quality standards — prompt
+        engineering, schema-constrained output validation, and iterative
+        refinement against real-world failure modes.
+      </blockquote>
+      <p>
+        Alongside the migration work I built repeatable onboarding and validation
+        frameworks, diagnosed publishing failures across cloud and on-premises
+        systems with root-cause analysis spanning network, server, and application
+        layers, and managed 10+ simultaneous enterprise CMS deployments.
+      </p>
+      <div class="project-outcomes">
+        <h4>Outcomes</h4>
+        <ul>
+          <li>Eliminated an estimated 60–80 hours of manual effort per client engagement</li>
+          <li>Reduced enterprise onboarding ramp time by roughly 25%</li>
+          <li>Cut publishing-failure resolution time by roughly 40%</li>
+          <li>Managed 10+ simultaneous enterprise CMS deployments</li>
+        </ul>
+      </div>
+      <div class="project-stack">
+        <span class="tag accent">Python</span>
+        <span class="tag accent">LLM</span>
+        <span class="tag accent">DITA-XML</span>
+        <span class="tag">Schema Validation</span>
+        <span class="tag">Migration</span>
+        <span class="tag">CCMS</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- Project 3: Nimble Storage -->
+  <article class="project">
+    <div class="project-meta">
+      <span class="label">Project № 03</span>
+      <span class="value">Enterprise Knowledge Consolidation</span>
+      <span class="label">Role</span>
+      <span class="value">Principal Engineer</span>
+      <span class="label">Company</span>
+      <span class="value">Nimble Storage</span>
+      <span class="label">Years</span>
+      <span class="value">2014 – 2017</span>
+    </div>
+    <div class="project-body">
+      <h3 class="project-title">Company-wide <em>knowledge migration</em></h3>
+      <p>
+        I led the company-wide migration of <strong>all documentation, API help,
+        support content, and technical marketing into a unified XML cloud CMS</strong>
+        — one of the earliest large-scale enterprise knowledge-consolidation
+        projects of its kind.
+      </p>
+      <blockquote class="project-pull">
+        I designed a custom internal API layer with the CMS vendor, enabling
+        programmatic content access and transformation — early API-first
+        architecture now essential to AI toolchain integration.
+      </blockquote>
+      <p>
+        I extended DITA-OT with custom plugins generating PDF, web, and LMS
+        outputs from a single source, serving diverse endpoints from a shared
+        knowledge representation. The architecture decisions made then are the
+        same ones AI systems demand now: a single source of truth, programmatically
+        accessible, with output adaptable to consumer context.
+      </p>
+      <div class="project-outcomes">
+        <h4>Outcomes</h4>
+        <ul>
+          <li>Unified all enterprise knowledge into a single XML cloud CMS</li>
+          <li>Custom internal API layer enabling programmatic content access</li>
+          <li>DITA-OT plugins producing PDF, web, and LMS outputs from single source</li>
+          <li>Pioneered API-first content architecture now central to AI integration</li>
+        </ul>
+      </div>
+      <div class="project-stack">
+        <span class="tag accent">DITA-OT</span>
+        <span class="tag accent">API-First</span>
+        <span class="tag">XML CMS</span>
+        <span class="tag">XSLT</span>
+        <span class="tag">Multi-channel Publishing</span>
+        <span class="tag">SCORM / LMS</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- Project 4: Ryffine CTO -->
+  <article class="project">
+    <div class="project-meta">
+      <span class="label">Project № 04</span>
+      <span class="value">Platform Strategy &amp; Architecture</span>
+      <span class="label">Role</span>
+      <span class="value">Chief Technology Officer</span>
+      <span class="label">Company</span>
+      <span class="value">Ryffine</span>
+      <span class="label">Years</span>
+      <span class="value">2017 – 2019</span>
+    </div>
+    <div class="project-body">
+      <h3 class="project-title">Full <em>technology stack</em> ownership</h3>
+      <p>
+        As CTO I owned the full technology-stack strategy for a content platform —
+        making architecture decisions that balanced <strong>capability, security,
+        and scalability</strong> with executive accountability. I translated
+        ambiguous business requirements into concrete technical specifications.
+      </p>
+      <blockquote class="project-pull">
+        Executive accountability sharpened skills AI roles increasingly demand:
+        communicating system tradeoffs clearly, managing cross-functional
+        stakeholder relationships, and ensuring AI initiatives succeed
+        organizationally — not just technically.
+      </blockquote>
+      <p>
+        I established SSO, MFA, certificate management, and backup systems —
+        building infrastructure and compliance fluency for regulated environments
+        — and managed third-party vendor relationships across email security,
+        VOIP, and network monitoring.
+      </p>
+      <div class="project-outcomes">
+        <h4>Outcomes</h4>
+        <ul>
+          <li>Full ownership of platform architecture, security, and scalability</li>
+          <li>Established SSO, MFA, certificate management, and backup infrastructure</li>
+          <li>Built compliance fluency for HIPAA-aware and regulated environments</li>
+          <li>Managed vendor stack across security, communications, and monitoring</li>
+        </ul>
+      </div>
+      <div class="project-stack">
+        <span class="tag accent">Platform Strategy</span>
+        <span class="tag accent">Security Architecture</span>
+        <span class="tag">SSO / MFA</span>
+        <span class="tag">Compliance</span>
+        <span class="tag">Vendor Management</span>
+        <span class="tag">Executive Leadership</span>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ─────────── EXPERIENCE ─────────── -->
+<section id="experience" class="container">
+  <div class="section-header">
+    <div class="section-num">§ 03 — Career</div>
+    <h2 class="section-title">Full <em>experience</em>.</h2>
+    <p class="section-lede">
+      The featured projects above are drawn from a fifteen-year arc spanning
+      independent consulting, Fortune 500 solutions engineering, and CTO-level
+      platform strategy.
+    </p>
+  </div>
+  <div class="pubs">
+    <div>
+      <div class="hero-aside-label" style="margin-bottom: 16px;">— Roles</div>
+      <p style="font-family: var(--serif); font-size: 16px; color: var(--ink-soft); line-height: 1.55;">
+        From DITA-OT plug-in development to LLM-powered migration tooling — every
+        role has refined the same underlying craft.
+      </p>
+    </div>
+    <div class="pubs-list">
+      <div class="pub">
+        <span class="pub-num">01</span>
+        <div>
+          <div class="pub-title">AI Solutions Consultant &nbsp;·&nbsp; Independent</div>
+          <div class="pub-venue">LLM integrations, RAG pipelines, multimodal ingestion, Python tooling</div>
+        </div>
+        <span class="pub-year">2025 – Present</span>
+      </div>
+      <div class="pub">
+        <span class="pub-num">02</span>
+        <div>
+          <div class="pub-title">Implementation Engineer &nbsp;·&nbsp; Heretto</div>
+          <div class="pub-venue">LLM-powered DITA migration tooling; 10+ enterprise CMS deployments</div>
+        </div>
+        <span class="pub-year">2024 – 2025</span>
+      </div>
+      <div class="pub">
+        <span class="pub-num">03</span>
+        <div>
+          <div class="pub-title">Customer Experience Consultant &nbsp;·&nbsp; Zea Inc</div>
+          <div class="pub-venue">Content-delivery pipeline audits, KPI dashboards, taxonomy design</div>
+        </div>
+        <span class="pub-year">2023 – 2024</span>
+      </div>
+      <div class="pub">
+        <span class="pub-num">04</span>
+        <div>
+          <div class="pub-title">Senior Solutions Engineer &nbsp;·&nbsp; TransPerfect</div>
+          <div class="pub-venue">Primary technical advisor for Vasont &amp; Astoria CCMS; Fortune 500 clients</div>
+        </div>
+        <span class="pub-year">2019 – 2023</span>
+      </div>
+      <div class="pub">
+        <span class="pub-num">05</span>
+        <div>
+          <div class="pub-title">Chief Technology Officer &nbsp;·&nbsp; Ryffine</div>
+          <div class="pub-venue">Full technology-stack ownership, security architecture, vendor management</div>
+        </div>
+        <span class="pub-year">2017 – 2019</span>
+      </div>
+      <div class="pub">
+        <span class="pub-num">06</span>
+        <div>
+          <div class="pub-title">Principal Engineer &nbsp;·&nbsp; Nimble Storage</div>
+          <div class="pub-venue">Company-wide XML CMS migration; custom internal API; DITA-OT plugins</div>
+        </div>
+        <span class="pub-year">2014 – 2017</span>
+      </div>
+      <div class="pub">
+        <span class="pub-num">07</span>
+        <div>
+          <div class="pub-title">Senior Consultant &nbsp;·&nbsp; Comtech Services</div>
+          <div class="pub-venue">Principal DITA-OT stylesheet developer; Fortune 500 &amp; government clients</div>
+        </div>
+        <span class="pub-year">2007 – 2014</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── TEACHING ─────────── -->
+<section id="teaching" class="container">
+  <div class="section-header">
+    <div class="section-num">§ 04 — Teaching</div>
+    <h2 class="section-title">Workshops &amp; <em>training</em>.</h2>
+    <p class="section-lede">
+      Taught structured-content workshops at industry conferences and inside
+      enterprise teams — translating DITA, schema design, and content reuse
+      principles for audiences ranging from working writers to executive
+      stakeholders.
+    </p>
+  </div>
+  <div class="pubs">
+    <div>
+      <div class="hero-aside-label" style="margin-bottom: 16px;">— Practice</div>
+      <p style="font-family: var(--serif); font-size: 16px; color: var(--ink-soft); line-height: 1.55;">
+        Teaching is where solutions engineering converges with communication.
+        The same skill set now applies to onboarding teams onto LLM
+        workflows and retrieval architectures.
+      </p>
+    </div>
+    <div class="pubs-list">
+      <div class="pub">
+        <span class="pub-num">01</span>
+        <div>
+          <div class="pub-title">Conference workshops on structured content &amp; DITA-XML</div>
+          <div class="pub-venue">Industry conferences for technical communicators &amp; content engineers</div>
+        </div>
+        <span class="pub-year">↳ Speaker</span>
+      </div>
+      <div class="pub">
+        <span class="pub-num">02</span>
+        <div>
+          <div class="pub-title">Enterprise team trainings &amp; structured-authoring adoption</div>
+          <div class="pub-venue">Client engagements across Fortune 500 &amp; government programs</div>
+        </div>
+        <span class="pub-year">↳ Lead Trainer</span>
+      </div>
+      <div class="pub">
+        <span class="pub-num">03</span>
+        <div>
+          <div class="pub-title">Content modeling, reuse strategy &amp; localization workflow design</div>
+          <div class="pub-venue">Cross-functional teams transitioning from unstructured to governed content</div>
+        </div>
+        <span class="pub-year">↳ Facilitator</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── EDUCATION ─────────── -->
+<section id="education" class="container">
+  <div class="section-header">
+    <div class="section-num">§ 05 — Education</div>
+    <h2 class="section-title">Foundational <em>training</em>.</h2>
+  </div>
+  <div class="pubs">
+    <div>
+      <div class="hero-aside-label" style="margin-bottom: 16px;">— Degrees</div>
+      <p style="font-family: var(--serif); font-size: 16px; color: var(--ink-soft); line-height: 1.55;">
+        Information systems built on a biology foundation — the same crossover
+        that has made structured-knowledge work feel natural since.
+      </p>
+    </div>
+    <div class="pubs-list">
+      <div class="pub">
+        <span class="pub-num">01</span>
+        <div>
+          <div class="pub-title">M.S., Information Systems</div>
+          <div class="pub-venue">DePaul University &nbsp;·&nbsp; Chicago, IL</div>
+        </div>
+        <span class="pub-year">2007</span>
+      </div>
+      <div class="pub">
+        <span class="pub-num">02</span>
+        <div>
+          <div class="pub-title">B.S., Biology</div>
+          <div class="pub-venue">Roanoke College &nbsp;·&nbsp; Salem, VA</div>
+        </div>
+        <span class="pub-year">2002</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── PUBLICATIONS ─────────── -->
+<section id="publications" class="container">
+  <div class="section-header">
+    <div class="section-num">§ 06 — Publications</div>
+    <h2 class="section-title">Peer-reviewed <em>research</em>.</h2>
+    <p class="section-lede">
+      Co-authored work in marine genomics &amp; shrimp immunology from the
+      Medical University of South Carolina — the foundation for a career-long
+      discipline of evidence-based, citation-driven knowledge work.
+    </p>
+  </div>
+  <div class="pubs">
+    <div>
+      <div class="hero-aside-label" style="margin-bottom: 16px;">— Discipline</div>
+      <p style="font-family: var(--serif); font-size: 16px; color: var(--ink-soft); line-height: 1.55;">
+        Functional genomics, EST analysis, immune-transcriptome characterization,
+        and host-pathogen response in <em>Litopenaeus vannamei</em>.
+      </p>
+    </div>
+    <div class="pubs-list">
+      <div class="pub">
+        <span class="pub-num">01</span>
+        <div>
+          <div class="pub-title">
+            O'Leary NA, <strong>Trent HF III</strong>, Robalino J, Peck MET,
+            McKillen DJ, Gross PS. <em>Analysis of multiple tissue-specific
+            cDNA libraries from the Pacific whiteleg shrimp,
+            Litopenaeus vannamei.</em>
+          </div>
+          <div class="pub-venue">Integrative &amp; Comparative Biology &nbsp;·&nbsp; PMID 21672797</div>
+        </div>
+        <span class="pub-year">2006</span>
+      </div>
+      <div class="pub">
+        <span class="pub-num">02</span>
+        <div>
+          <div class="pub-title">
+            Robalino J, Almeida JS, McKillen D, Colglazier J, <strong>Trent HF III</strong>,
+            Chen YA, Peck MET, Browdy CL, Chapman RW, Warr GW, Gross PS.
+            <em>Insights into the immune transcriptome of the shrimp
+            Litopenaeus vannamei: tissue-specific expression profiles and
+            transcriptomic responses to immune challenge.</em>
+          </div>
+          <div class="pub-venue">Physiological Genomics &nbsp;·&nbsp; 29(1): 44–56</div>
+        </div>
+        <span class="pub-year">2007</span>
+      </div>
+      <div class="pub">
+        <span class="pub-num">03</span>
+        <div>
+          <div class="pub-title">
+            McKillen DJ, Chen YA, Chen C, Jenny MJ, <strong>Trent HF III</strong>,
+            Robalino J, McLean DC Jr, Gross PS, Warr GW, Almeida JS.
+            <em>Marine Genomics: a clearing-house for genomic and
+            transcriptomic data of marine organisms.</em>
+          </div>
+          <div class="pub-venue">BMC Genomics &nbsp;·&nbsp; 6:34</div>
+        </div>
+        <span class="pub-year">2005</span>
+      </div>
+      <div class="pub">
+        <span class="pub-num">04</span>
+        <div>
+          <div class="pub-title">
+            Robalino J, Almeida JS, McKillen D, Colglazier J, <strong>Trent HF</strong>,
+            Chen YA, Peck MET, Browdy CL, Chapman RW, Warr GW, Gross PS.
+            <em>Molecular signatures at imminent death: Hemocyte gene
+            expression profiling of shrimp succumbing to viral and fungal
+            infections.</em>
+          </div>
+          <div class="pub-venue">Developmental &amp; Comparative Immunology &nbsp;·&nbsp; co-author contribution</div>
+        </div>
+        <span class="pub-year">2013</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── SKILLS ─────────── -->
+<section id="skills" class="container">
+  <div class="section-header">
+    <div class="section-num">§ 07 — Toolkit</div>
+    <h2 class="section-title">Core <em>competencies</em>.</h2>
+  </div>
+  <div class="skills-grid">
+    <div>
+      <div class="hero-aside-label">— Note</div>
+      <p style="font-family: var(--serif); font-size: 15px; color: var(--ink-soft); line-height: 1.55; margin-top: 16px;">
+        Not a wish-list — tools and methods shipped to production across
+        consulting, Fortune 500, and CTO engagements.
+      </p>
+    </div>
+    <div class="skill-col">
+      <h4>AI &amp; LLMs</h4>
+      <ul>
+        <li>LLM Integration (Anthropic API)</li>
+        <li>RAG Pipeline Design</li>
+        <li>Prompt Engineering</li>
+        <li>Retrieval &amp; Grounding</li>
+        <li>Output-Quality Evaluation</li>
+        <li>Multimodal Ingestion</li>
+        <li>Python AI Tooling</li>
+      </ul>
+    </div>
+    <div class="skill-col">
+      <h4>Knowledge Systems</h4>
+      <ul>
+        <li>DITA / XML</li>
+        <li>DITA-OT</li>
+        <li>Structured Authoring</li>
+        <li>Content Reuse Modeling</li>
+        <li>Large-Scale Taxonomy</li>
+        <li>Information Architecture</li>
+        <li>Schema Design</li>
+      </ul>
+    </div>
+    <div class="skill-col">
+      <h4>Engineering &amp; Platforms</h4>
+      <ul>
+        <li>Python · JavaScript</li>
+        <li>REST APIs</li>
+        <li>CI/CD (GitHub Actions, Jenkins)</li>
+        <li>XSLT · XPath</li>
+        <li>Heretto · Vasont · Astoria</li>
+        <li>Oxygen XML · FrameMaker</li>
+        <li>AWS · SSO/MFA · HIPAA-aware</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FOOTER ─────────── -->
+<footer id="contact" class="container">
+  <div class="footer-grid">
+    <div class="footer-statement">
+      Let's talk about <em>LLM integration</em>, retrieval architecture, or
+      anything that lives where structured knowledge meets applied AI.
+    </div>
+    <div class="footer-contact">
+      <div class="hero-aside-label" style="margin-bottom: 16px;">— Reach</div>
+      Phone &nbsp;·&nbsp; <a href="tel:+15403979771">540.397.9771</a><br>
+      Email &nbsp;·&nbsp; <a href="mailto:hal.trent@me.com">hal.trent@me.com</a><br>
+      LinkedIn &nbsp;·&nbsp; <a href="https://linkedin.com/in/hal-trent">/in/hal-trent</a><br>
+      Location &nbsp;·&nbsp; Roanoke, Virginia<br>
+      Open to &nbsp;·&nbsp; AI Engineer / AI Solutions Architect<br>
+      Status &nbsp;·&nbsp; Open to opportunity
+    </div>
+  </div>
+  <div class="footer-fine">
+    <span>Harold F. Trent III &nbsp;·&nbsp; Portfolio &nbsp;·&nbsp; MMXXVI</span>
+    <span>Set in Arial</span>
+  </div>
+</footer>
+
+</body>
+</html>
